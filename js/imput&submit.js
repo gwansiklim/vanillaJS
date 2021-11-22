@@ -14,7 +14,7 @@ function onLoginBtnClick() {
 
 loginButton.addEventListener("click", onLoginBtnClick);
 
-// function의 기본동적을 막아주게 해주는 용어
+// function의 기본동적을 막아주게 해주는 용어 배우기!
 const loginForm = document.querySelector("#login-form");
 const loginInput = document.querySelector("#login-form input");
 
