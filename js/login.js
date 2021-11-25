@@ -18,7 +18,7 @@ function paintGreetings(username) {
     greeting.classList.remove(HIDDEN_CLASSNAME);
 }
 
-const savedUsername = localStorage.getItem(USERNAME_KEY);
+const savedUsername = localStorage.getItem(USERNAME_KEY);// getitem()은 localstorage에 저정되어 있는것을 불러올 때 사용 
 
 if (savedUsername === null) {
     //show the form
