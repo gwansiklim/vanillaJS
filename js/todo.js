@@ -2,8 +2,8 @@ const toDoForm = document.getElementById("todo-form");
 const toDoInput = toDoForm.querySelector("input");
 const toDoList = document.getElementById("todo-list");
 
-const TODOS_KEY = TODOS_KEY
-const toDos = [];
+const TODOS_KEY = "todos"
+let toDos = [];
 
 function saveToDos() {
     localStorage.setItem(TODOS_KEY, JSON.stringify(toDos)); //JSON.stringify()를 이용해 Array들을 String으로 만들고 localstorage에 저장!
@@ -38,13 +38,10 @@ function handleToDoSubmit(event) {
 }
 toDoForm.addEventListener("submit", handleToDoSubmit);
 
-function sayHello(item) {
-    console.log("this is the turn of" + item)
-}
-
-const savedToDos = localStorage.getItem(TODOS_KEY);
+const savedToDos = localStorage.getItem(TODOS_KEY); // 저장되어있는 object를 불러온다.
 
 if (saveToDos !== null) {
-    const parsedToDos = JSON.parse(saveToDos);
-    parsedToDos.forEach(sayHello);
+    const parsedToDos = JSON.parse(savedToDos); // string을 object로 변환해준다.
+    toDos = parsedToDos;
+    parsedToDos.forEach(paintTodo); // forEach()는 괄호 안에있는 정보들을 한개씩 돌아가면서 정보를 가져온다(?)
 }
