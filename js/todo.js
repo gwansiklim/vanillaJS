@@ -18,8 +18,9 @@ function deleteToDO(event) {
 
 function paintTodo(newTodo) {
     const li = document.createElement("li");
+    li.id = newTodo.id;
     const span = document.createElement("span");
-    span.innerText = newTodo;
+    span.innerText = newTodo.text;
     const button = document.createElement("button");
     button.innerText = "✖︎";
     button.addEventListener("click", deleteToDO); //버튼을 클릭하면 이벤트 발생
@@ -32,15 +33,19 @@ function handleToDoSubmit(event) {
     event.preventDefault();
     const newTodo = toDoInput.value;
     toDoInput.value = ""; //input을 비워준다.
-    toDos.push(newTodo); // toDos에 Array를 만들어준다.
-    paintTodo(newTodo); //paintTodo를 호출하고 바로 위에 있는 변수 newTodo를 불러온다.
+    const newTodoObj = { // Array를 object로 바꿈!
+        text: newTodo,
+        id: Date.now(),
+    }
+    toDos.push(newTodoObj); // toDos에 Array를 만들어준다.
+    paintTodo(newTodoObj); //paintTodo를 호출하고 바로 위에 있는 변수 newTodo를 불러온다.
     saveToDos();
 }
 toDoForm.addEventListener("submit", handleToDoSubmit);
 
 const savedToDos = localStorage.getItem(TODOS_KEY); // 저장되어있는 object를 불러온다.
 
-if (saveToDos !== null) {
+if (savedToDos !== null) {
     const parsedToDos = JSON.parse(savedToDos); // string을 object로 변환해준다.
     toDos = parsedToDos;
     parsedToDos.forEach(paintTodo); // forEach()는 괄호 안에있는 정보들을 한개씩 돌아가면서 정보를 가져온다(?)
