@@ -14,6 +14,8 @@ function deleteToDO(event) {
     // 즉, 버튼을 클릭시 button이 가지고있는 부모를 삭제하겠다는 뜻이 된다.
     const li = event.target.parentElement;
     li.remove();
+    toDos = toDos.filter(toDo => toDo.id !== parseInt(li.id)); //내가 클릭한 li.id와 다른 toDo는 남겨두고 싶다라는 뜻.
+    saveToDos()
 }
 
 function paintTodo(newTodo) {
@@ -50,3 +52,4 @@ if (savedToDos !== null) {
     toDos = parsedToDos;
     parsedToDos.forEach(paintTodo); // forEach()는 괄호 안에있는 정보들을 한개씩 돌아가면서 정보를 가져온다(?)
 }
+
